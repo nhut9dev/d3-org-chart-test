@@ -1,6 +1,3 @@
-import React from 'react';
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
-
 const styles = {
 	expandBtn: {
 		width: '30px',
@@ -21,14 +18,14 @@ const styles = {
 	}
 };
 
-const CustomExpandButton = (node) => {
+const ExpandButton = (node) => {
 	return (
 		<>
 			{node && (
-				<div style={styles.expandBtn}>
+				<div style={styles.a}>
 					<span>{node.data._directSubordinates}</span>
 					<span style={styles.flex}>
-						{node.children ? <FaAngleUp /> : <FaAngleDown />}
+						{/* {node.children ? <FaAngleUp /> : <FaAngleDown />} */}
 					</span>
 				</div>
 			)}
@@ -36,4 +33,4 @@ const CustomExpandButton = (node) => {
 	);
 };
 
-export default CustomExpandButton;
+export default ExpandButton;

@@ -1,16 +1,14 @@
 import { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { Button, Select } from 'antd';
 import { OrgChart } from 'd3-org-chart';
 import * as d3 from 'd3';
 
-import CustomExpandButton from './components/customExpandButton';
 import NodeLayout from './components/NodeLayout';
 import NODE_LAYOUT from './constants/nodeLayout';
 
 import stylesModule from './OrganizationalChart.module.scss';
-import jsPDF from 'jspdf';
-import { useReactToPrint } from 'react-to-print';
-import { Button, Input, InputNumber, Select } from 'antd';
+import ExpandButton from './components/ExpandButton';
 
 const styles = {
 	orgChart: {
@@ -31,12 +29,6 @@ const OrganizationalChart = ({ data, ...props }) => {
 	const [editingId, setEditingId] = useState(null);
 
 	let chart = new OrgChart();
-
-	const handlePrintChart = useReactToPrint({
-		content: () => {
-			return d3Container.current;
-		}
-	});
 
 	useLayoutEffect(() => {
 		if (data && d3Container.current && render) {
@@ -66,11 +58,7 @@ const OrganizationalChart = ({ data, ...props }) => {
 					// console.log(d);
 					// setEditingId(d.id);
 				})
-				.buttonContent((node, state) => {
-					return ReactDOMServer.renderToStaticMarkup(
-						<CustomExpandButton {...node.node} />
-					);
-				})
+
 				.nodeContent((d) => {
 					const n = ReactDOMServer.renderToString(
 						<NodeLayout
@@ -109,10 +97,11 @@ const OrganizationalChart = ({ data, ...props }) => {
 	return (
 		<>
 			<div style={{ display: 'flex', gap: 10 }}>
-				<Button onClick={() => chart.exportSvg()}>Export SVG</Button>
 				<Button onClick={() => chart.exportImg({ scale: 10, full: true })}>
 					Export Img
 				</Button>
+
+				<Button onClick={() => chart.fit()}>View full</Button>
 
 				<Select
 					value={layout}
