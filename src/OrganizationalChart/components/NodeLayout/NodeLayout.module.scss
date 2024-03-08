@@ -1,0 +1,35 @@
+.nodeLayout {
+	height: 100%;
+	width: 100%;
+	padding-top: 20px;
+}
+
+.contentWrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid gray;
+	border-radius: 10px;
+	height: 100%;
+	background: white;
+	.content {
+		font-size: 20px;
+		font-weight: 700;
+	}
+}
+
+.imgWrapper {
+	padding: 4px;
+	border-radius: 50%;
+	position: absolute;
+	top: -30px;
+	left: 20px;
+	background: white;
+}
+
+.nodeImg {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+}
