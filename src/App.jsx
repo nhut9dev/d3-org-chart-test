@@ -2,7 +2,6 @@ import OrganizationalChart from './OrganizationalChart';
 import { useState } from 'react';
 import departmentListData from './OrganizationalChart/constants/departmentListData';
 import _ from 'lodash';
-import 'jspdf/dist/polyfills.es.js';
 
 function App() {
 	const [data, setData] = useState(departmentListData);
